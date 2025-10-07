@@ -9,13 +9,13 @@ Two methods are used for finding seams:
 
 | Original Image | Simple Cropping | Seam Carving |
 |----------------|-----------------|---------------|
-| ![original](x) | ![crop](x) | ![seam](x) |
+| ![original](data/input1.jpg) | ![crop](data/cropped_input1.jpg) | ![seam](data/output1.jpg) |
 
 ### 🧪 Example Visuals
 
 Below is an example showing the seam removal process during testing:
 
-![Seam Carving Test](x)
+![Seam Carving Test](data/output2_process.gif)
 
 ---
 
