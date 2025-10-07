@@ -46,7 +46,7 @@ cd seam-carving
 You can run the seam carving tool directly from the command line:
 
 ```bash
-python3 main.py input.jpg output.jpg --vertical 20 --horizontal 10 --method dp --gif
+python3 main.py data/input2.jpg data/output2.jpg --vertical 50 --horizontal 30 --method dp --gif
 ```
 
 ### 🧠 CLI Arguments
@@ -90,18 +90,3 @@ Low energy = background or uniform areas
 
 ### 💡 Dynamic Programming Alternative
 The DP method computes minimum-energy paths more efficiently by reusing results from previous columns/rows, achieving better runtime with less memory overhead.
-
----
-
-## 🧰 Example Usage
-
-### ✂️ Remove 30 Vertical Seams Using Dijkstra’s Algorithm
-```bash
-python3 main.py images/input.jpg images/output.jpg --vertical 30 --method dijkstra
-```
-
-### 🎞️ Generate a GIF Showing Seam Removal
-```bash
-python3 main.py images/input.jpg images/output.jpg --vertical 40 --horizontal 20 --gif
-```
-This saves an animated file like `output_process.gif`.
