@@ -11,6 +11,12 @@ Two methods are used for finding seams:
 |----------------|-----------------|---------------|
 | ![original](x) | ![crop](x) | ![seam](x) |
 
+### 🧪 Example Visuals
+
+Below is an example showing the seam removal process during testing:
+
+![Seam Carving Test](x)
+
 ---
 
 ## 🧩 File Description
@@ -95,13 +101,3 @@ python3 main.py images/input.jpg images/output.jpg --vertical 30 --method dijkst
 python3 main.py images/input.jpg images/output.jpg --vertical 40 --horizontal 20 --gif
 ```
 This saves an animated file like `output_process.gif`.
-
----
-
-## 🧪 Example Test Output
-
-Below is an example showing the seam removal process during testing:
-
-![Seam Carving Test](x)
-
-
