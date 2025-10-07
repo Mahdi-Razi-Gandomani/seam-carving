@@ -71,10 +71,13 @@ Instead of cropping edges or uniformly scaling, it preserves the most visually i
 ### ⚡ Energy Function
 The **energy function** estimates the “importance” of each pixel based on local gradients:
 
-`E(x, y) = sqrt((dR_x^2 + dG_x^2 + dB_x^2) + (dR_y^2 + dG_y^2 + dB_y^2))`
+$$
+E(x, y) = \sqrt{(dR_x^2 + dG_x^2 + dB_x^2) + (dR_y^2 + dG_y^2 + dB_y^2)}
+$$
 
 High energy = significant detail (edges, objects)  
 Low energy = background or uniform areas
+
 
 
 ### 🧭 Finding Seams via Dijkstra’s Algorithm
