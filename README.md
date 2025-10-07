@@ -16,6 +16,7 @@ Two methods are used for finding seams:
 Below are examples showing the seam removal process.
 
 ![Seam Carving Test](data/output2_process.gif)
+
 ![Seam Carving Test](data/output1_process.gif)
 
 ---
