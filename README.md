@@ -13,9 +13,10 @@ Two methods are used for finding seams:
 
 ### 🧪 Example Visuals
 
-Below is an example showing the seam removal process during testing:
+Below are examples showing the seam removal process.
 
 ![Seam Carving Test](data/output2_process.gif)
+![Seam Carving Test](data/output1_process.gif)
 
 ---
 
