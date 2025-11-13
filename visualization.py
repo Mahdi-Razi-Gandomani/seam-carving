@@ -2,14 +2,14 @@ from typing import List
 from PIL import Image, ImageDraw
 
 
-def draw_vertical_seam(image: Image.Image, seam: List[int], color=(255, 0, 0)) -> Image.Image:
+def draw_vertical_seam(image, seam, color=(255, 0, 0)):
     img_copy = image.copy()
     draw = ImageDraw.Draw(img_copy)
     for y, x in enumerate(seam):
         draw.point((x, y), fill=color)
     return img_copy
 
-def draw_horizontal_seam(image: Image.Image, seam: List[int], color=(255, 0, 0)) -> Image.Image:
+def draw_horizontal_seam(image, seam, color=(255, 0, 0)):
     img_copy = image.copy()
     draw = ImageDraw.Draw(img_copy)
     for x, y in enumerate(seam):
