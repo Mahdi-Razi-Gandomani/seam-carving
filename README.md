@@ -1,6 +1,6 @@
-# 🪄 Seam Carving — Content-Aware Image Resizing
+# Seam Carving — Content-Aware Image Resizing
 
-## 📘 Overview
+## Overview
 This project implements **content-aware image resizing** using **seam carving**, a technique that intelligently removes pixels from an image while preserving its most important visual content.  
 
 Two methods are used for finding seams:
@@ -11,9 +11,9 @@ Two methods are used for finding seams:
 |----------------|-----------------|---------------|
 | ![original](data/input1.jpg) | ![crop](data/cropped_input1.jpg) | ![seam](data/output1.jpg) |
 
-### 🧪 Example Visuals
+### Demo
 
-Below are examples showing the seam removal process.
+Below are examples showing how this program works.
 
 ![Seam Carving Test](data/output1_process.gif)
 
@@ -21,7 +21,7 @@ Below are examples showing the seam removal process.
 
 ---
 
-## 🧩 File Description
+## File Description
 
 | File / Directory | Description |
 |------------------|-------------|
