@@ -25,33 +25,34 @@ Below are examples showing how this program works.
 
 ```bash
 .
-├── `graph.py`                 Defines the `Graph` interface and `Edge` class for graph representation. |
-├── `dijkstra.py`              Implements Dijkstra’s algorithm (`DijkstraShortestPathFinder`) and the graph reduction for seam finding (`DijkstraMethod`). |
-├──`dynamic_programming.py`    Implements the dynamic programming seam finder (`DpMethod`). |
-├── `utilities.py`             Includes the energy function, seam removal utilities, and image manipulation functions. |
-├──`visualization.py`          Provides utilities to visualize seams and create animated GIFs. |
-├──`cli.py`                    Command-line interface for running seam carving directly. |
-├──`main.py`                   Entry point of the project. Runs the CLI and manages input/output. |
-└── `data/`                    Contains example input images and expected outputs for testing. |
+├── graph.py                 # Defines the `Graph` interface and `Edge` class for graph representation.
+├── dijkstra.py              # Implements Dijkstra’s algorithm and the graph reduction for seam finding.
+├──dynamic_programming.py    # Implements the dynamic programming seam finder.
+├── utilities.py             # Includes the energy function, seam removal utilities, and image manipulation functions.
+├──visualization.py          # Provides utilities to visualize seams and create animated GIFs.
+├──cli.py                    # Command-line interface for running seam carving directly.
+├──main.py                   # Entry point of the project. Runs the CLI and manages input/output.
+├── data/                    # Contains example input images and expected outputs for testing.
+└── README.md 
 ```
 ---
 
-## ⚙️ Getting Started
+## Usage
 
-### 📦 Clone the Repository
+### Clone the Repository
 ```bash
 git clone https://github.com/mahdi-razi-gandomani/seam-carving.git
 cd seam-carving
 ```
 
-### ▶️ Running the Program
+### Running the Program
 You can run the seam carving tool directly from the command line:
 
 ```bash
 python3 main.py data/input2.jpg data/output2.jpg --vertical 50 --horizontal 30 --method dp --gif
 ```
 
-### 🧠 CLI Arguments
+### CLI Arguments
 
 | Argument | Description | Default |
 |-----------|-------------|----------|
@@ -64,13 +65,13 @@ python3 main.py data/input2.jpg data/output2.jpg --vertical 50 --horizontal 30 -
 
 ---
 
-## 🧮 How It Works
+## How It Works
 
-### 🖼️ What Is Seam Carving?
+### What Is Seam Carving?
 Seam carving is a **content-aware image resizing** algorithm that removes (or inserts) seams — connected paths of least “energy” pixels — from an image.  
 Instead of cropping edges or uniformly scaling, it preserves the most visually important regions.
 
-### ⚡ Energy Function
+### Energy Function
 The **energy function** estimates the “importance” of each pixel based on local gradients:
 
 $$
@@ -82,7 +83,7 @@ Low energy = background or uniform areas
 
 
 
-### 🧭 Finding Seams via Dijkstra’s Algorithm
+### Finding Seams via Dijkstra’s Algorithm
 1. Model the image as a **directed acyclic graph (DAG)**:
    - Pixels → vertices  
    - Energy values → edge weights  
@@ -90,5 +91,5 @@ Low energy = background or uniform areas
 2. Use **Dijkstra’s algorithm** to find the lowest-energy path (shortest path).
 3. Remove that path (seam) from the image.
 
-### 💡 Dynamic Programming Alternative
+### Dynamic Programming Alternative
 The DP method computes minimum-energy paths more efficiently by reusing results from previous columns/rows, achieving better runtime with less memory overhead.
