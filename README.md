@@ -21,19 +21,19 @@ Below are examples showing how this program works.
 
 ---
 
-## File Description
+## Repo Structure
 
-| File / Directory | Description |
-|------------------|-------------|
-| `graph.py` | Defines the `Graph` interface and `Edge` class for graph representation. |
-| `dijkstra.py` | Implements Dijkstra’s algorithm (`DijkstraShortestPathFinder`) and the graph reduction for seam finding (`DijkstraMethod`). |
-| `dynamic_programming.py` | Implements the dynamic programming seam finder (`DpMethod`). |
-| `utilities.py` | Includes the energy function, seam removal utilities, and image manipulation functions. |
-| `visualization.py` | Provides utilities to visualize seams and create animated GIFs. |
-| `cli.py` | Command-line interface for running seam carving directly. |
-| `main.py` | Entry point of the project. Runs the CLI and manages input/output. |
-| `data/` | Contains example input images and expected outputs for testing. |
-
+```bash
+.
+├── `graph.py`                 Defines the `Graph` interface and `Edge` class for graph representation. |
+├── `dijkstra.py`              Implements Dijkstra’s algorithm (`DijkstraShortestPathFinder`) and the graph reduction for seam finding (`DijkstraMethod`). |
+├──`dynamic_programming.py`    Implements the dynamic programming seam finder (`DpMethod`). |
+├── `utilities.py`             Includes the energy function, seam removal utilities, and image manipulation functions. |
+├──`visualization.py`          Provides utilities to visualize seams and create animated GIFs. |
+├──`cli.py`                    Command-line interface for running seam carving directly. |
+├──`main.py`                   Entry point of the project. Runs the CLI and manages input/output. |
+└── `data/`                    Contains example input images and expected outputs for testing. |
+```
 ---
 
 ## ⚙️ Getting Started
