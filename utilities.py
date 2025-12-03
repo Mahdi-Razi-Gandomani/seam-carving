@@ -4,7 +4,7 @@ from typing import List
 
 
 # Energy function
-def DualGradientEnergy(image: np.ndarray) -> np.ndarray:
+def DualGradientEnergy(image):
     H, W = image.shape[:2]
     energy = np.zeros((H, W), dtype=float)
     BORDER = 1000.0
@@ -26,7 +26,7 @@ def DualGradientEnergy(image: np.ndarray) -> np.ndarray:
 
 
 # Seam removal utilities
-def remove_vertical_seam(image: np.ndarray, seam: List[int]) -> np.ndarray:
+def remove_vertical_seam(image, seam):
     H, W = image.shape[:2]
     out = np.zeros((H, W - 1, image.shape[2]), dtype=image.dtype)
     for y in range(H):
@@ -34,7 +34,7 @@ def remove_vertical_seam(image: np.ndarray, seam: List[int]) -> np.ndarray:
         out[y, :, :] = np.delete(image[y, :, :], x, axis=0)
     return out
 
-def remove_horizontal_seam(image: np.ndarray, seam: List[int]) -> np.ndarray:
+def remove_horizontal_seam(image, seam):
     H, W = image.shape[:2]
     out = np.zeros((H - 1, W, image.shape[2]), dtype=image.dtype)
     for x in range(W):
