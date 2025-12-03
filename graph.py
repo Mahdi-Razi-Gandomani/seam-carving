@@ -1,14 +1,11 @@
-from typing import Any, Iterable
-
-
 # Graph edge class
 class Edge:
-    def __init__(self, src: Any, dest: Any, weight: float):
+    def __init__(self, src, dest, weight):
         self.src = src
         self.dest = dest
         self.weight = weight
 
-#Graph interface
+# Graph interface
 class Graph:
-    def outgoing_edges(self, vertex: Any) -> Iterable[Edge]:
+    def outgoing_edges(self, vertex):
         raise NotImplementedError()
