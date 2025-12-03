@@ -14,7 +14,7 @@ def run_cli():
     parser.add_argument("--vertical", type=int, default=0, help="Number of vertical seams to remove")
     parser.add_argument("--horizontal", type=int, default=0, help="Number of horizontal seams to remove")
     parser.add_argument("--method", choices=["dp", "dijkstra"], default="dp", help="Seam finding method")
-    parser.add_argument("--gif", action="store_true", help="Save a GIF of the seam removal/insertion process")
+    parser.add_argument("--gif", action="store_true", help="Save a GIF of the seam removal process")
 
     args = parser.parse_args()
 
