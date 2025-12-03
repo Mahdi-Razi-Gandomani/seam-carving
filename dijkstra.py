@@ -1,13 +1,11 @@
 from graph import Edge, Graph
-import numpy as np
-from typing import Any, Dict, List, Iterable, Tuple
 import heapq
 
 
-class DijkstraShortestPathFinder:
-    def shortest_paths_tree(self, graph: Graph, start: Any, end: Any) -> Dict[Any, Edge]:
-        parent_edge: Dict[Any, Edge] = {}
-        dist: Dict[Any, float] = {}
+class Dijkstra:
+    def shortest_paths_tree(self, graph, start, end):
+        parent_edge = {}
+        dist = {}
         INF = float('inf')
         heap = []
         counter = 0
@@ -33,10 +31,10 @@ class DijkstraShortestPathFinder:
                     counter += 1
         return parent_edge
 
-    def extract_shortest_path(self, spt: Dict[Any, Edge], start: Any, end: Any) -> List[Edge]:
+    def extract_shortest_path(self, spt, start, end):
         if end not in spt and end != start:
             return []
-        path_rev: List[Edge] = []
+        path_rev = []
         cur = end
         while cur != start:
             if cur not in spt:
@@ -47,13 +45,13 @@ class DijkstraShortestPathFinder:
         path_rev.reverse()
         return path_rev
 
-    def find_shortest_path(self, graph: Graph, start: Any, end: Any) -> List[Edge]:
+    def find_shortest_path(self, graph, start, end):
         spt = self.shortest_paths_tree(graph, start, end)
         return self.extract_shortest_path(spt, start, end)
 
 # Energy grid graph for seams
 class EnergyGridGraph(Graph):
-    def __init__(self, energy: np.ndarray, vertical: bool = True):
+    def __init__(self, energy, vertical=True):
         assert energy.ndim == 2
         self.energy = energy.astype(float)
         self.H, self.W = energy.shape
@@ -61,7 +59,7 @@ class EnergyGridGraph(Graph):
         self.SOURCE = ("<SOURCE>", "S")
         self.SINK = ("<SINK>", "T")
 
-    def outgoing_edges(self, vertex: Any) -> Iterable[Edge]:
+    def outgoing_edges(self, vertex):
         if vertex == self.SOURCE:
             if self.vertical:
                 for x in range(self.W):
@@ -94,13 +92,13 @@ class EnergyGridGraph(Graph):
 # Dijkstra seam finder
 class DijkstraMethod:
     def __init__(self):
-        self.path_finder = DijkstraShortestPathFinder()
+        self.path_finder = Dijkstra()
 
-    def find_vertical_seam(self, energy: np.ndarray) -> List[int]:
+    def find_vertical_seam(self, energy):
         graph = EnergyGridGraph(energy, vertical=True)
         s, t = graph.SOURCE, graph.SINK
         edges = self.path_finder.find_shortest_path(graph, s, t)
-        verts: List[Tuple[int, int]] = []
+        verts = []
         for e in edges:
             if e.dest == graph.SINK:
                 break
@@ -111,7 +109,7 @@ class DijkstraMethod:
             seam[y] = x
         return seam
 
-    def find_horizontal_seam(self, energy: np.ndarray) -> List[int]:
+    def find_horizontal_seam(self, energy):
         transposed = energy.T.copy()
         seam_in_transposed = self.find_vertical_seam(transposed)
         return seam_in_transposed
