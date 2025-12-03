@@ -1,10 +1,9 @@
 import numpy as np
-from typing import List
 
 
 # Dynamic Programming seam finder
 class DpMethod:
-    def find_vertical_seam(self, energy: np.ndarray) -> List[int]:
+    def find_vertical_seam(self, energy):
         H, W = energy.shape
         dp = np.full((H, W), float("inf"))
         back = np.full((H, W), -1, dtype=int)
@@ -28,7 +27,7 @@ class DpMethod:
             seam[y - 1] = int(back[y, seam[y]])
         return seam
 
-    def find_horizontal_seam(self, energy: np.ndarray) -> List[int]:
+    def find_horizontal_seam(self, energy):
         t = energy.T.copy()
         v_seam = self.find_vertical_seam(t)
         return v_seam
