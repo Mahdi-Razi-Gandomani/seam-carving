@@ -1,4 +1,4 @@
-# Seam Carving — Content-Aware Image Resizing
+# Seam Carving
 
 ## Overview
 This project implements **content-aware image resizing** using **seam carving**, a technique that intelligently removes pixels from an image while preserving its most important visual content.  
