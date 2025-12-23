@@ -41,3 +41,45 @@ def remove_horizontal_seam(image, seam):
         y = seam[x]
         out[:, x, :] = np.delete(image[:, x, :], y, axis=0)
     return out
+
+
+
+
+# Seam insertion
+def insert_vertical_seam(image, seam):
+    H, W = image.shape[:2]
+    out = np.zeros((H, W + 1, image.shape[2]), dtype=image.dtype)
+    for y in range(H):
+        x = int(seam[y])
+        if x > 0:
+            out[y, : x, :] = image[y, : x, :]
+        # Duplicate the seam pixel
+        if x < W - 1:
+            out[y, x, :] = ((image[y, x, :].astype(float) + image[y, x + 1, :].astype(float)) / 2).astype(image.dtype)
+            out[y, x + 1, :] = out[y,x, :]
+        else:
+            out[y, x, :] = image[y, x, :]
+            out[y, x + 1, :] = image[y, x, :]
+        
+        if x + 1 < W:
+            out[y, x + 2 :, :] = image[y, x + 1 :, :]
+    return out
+
+
+def insert_horizontal_seam(image, seam):
+    H, W = image.shape[:2]
+    out = np.zeros((H + 1, W, image.shape[2]), dtype=image.dtype)
+    for x in range(W):
+        y = int(seam[x])
+        if y > 0:
+            out[:y, x, :] = image[:y, x, :]
+        if y < H - 1:
+            out[y, x, :] = ((image[y, x, :].astype(float) + image[y + 1, x, :].astype(float)) / 2).astype(image.dtype)
+            out[y + 1, x, :] = out[y, x, :]
+        else:
+            out[y, x, :] = image[y, x, :]
+            out[y + 1, x, :] = image[y, x, :]
+        if y + 1 < H:
+            out[y + 2 :, x, :] = image[y + 1 :,x, :]
+    return out
+
