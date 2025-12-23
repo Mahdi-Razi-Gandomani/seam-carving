@@ -3,7 +3,7 @@ from PIL import Image
 import numpy as np
 from dijkstra import DijkstraMethod
 from dynamic_programming import DpMethod
-from utilities import DualGradientEnergy, remove_vertical_seam, remove_horizontal_seam
+from utilities import DualGradientEnergy, remove_vertical_seam, remove_horizontal_seam, insert_vertical_seam, insert_horizontal_seam
 from visualization import draw_vertical_seam, draw_horizontal_seam, save_gif
 
 
