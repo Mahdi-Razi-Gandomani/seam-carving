@@ -25,14 +25,14 @@ Below are examples showing how this program works.
 
 ```bash
 .
-├── graph.py                 # Defines the `Graph` interface and `Edge` class for graph representation.
-├── dijkstra.py              # Implements Dijkstra’s algorithm and the graph reduction for seam finding.
+├── graph.py                  # Defines the `Graph` interface and `Edge` class
+├── dijkstra.py               # Implements Dijkstra’s algorithm and the graph reduction for seam finding.
 ├── dynamic_programming.py    # Implements the dynamic programming seam finder.
-├── utilities.py             # Includes the energy function, seam removal utilities, and image manipulation functions.
+├── utilities.py              # Includes the energy function, seam removal utilities, and image manipulation functions.
 ├── visualization.py          # Provides utilities to visualize seams and create animated GIFs.
 ├── cli.py                    # Command-line interface for running seam carving directly.
 ├── main.py                   # Entry point of the project. Runs the CLI and manages input/output.
-├── data/                    # Contains example input images and expected outputs for testing.
+├── data/                     # Contains example input images and expected outputs for testing.
 └── README.md 
 ```
 ---
