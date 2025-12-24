@@ -1,10 +1,10 @@
 # Seam Carving
 
 ## Overview
-This project implements **content-aware image resizing** using **seam carving**, a technique that intelligently removes pixels from an image while preserving its most important visual content.  
+This project implements **content-aware image resizing** using **seam carving**, a technique that intelligently removes or inserts pixels from an image while preserving its most important visual content.  
 
 Two methods are used for finding seams:
-- **Dijkstra’s Algorithm** — a graph-based approach using shortest path computation.  
+- **Dijkstra's Algorithm** — a graph-based approach using shortest path computation.  
 - **Dynamic Programming** — an optimized method that reduces computation time. 
 
 | Original Image | Simple Cropping | Seam Carving |
@@ -13,7 +13,7 @@ Two methods are used for finding seams:
 
 ### Demo
 
-Below are examples showing how this program works.
+Below are examples showing the process.
 
 ![Seam Carving Test](data/output1_process.gif)
 
@@ -25,14 +25,14 @@ Below are examples showing how this program works.
 
 ```bash
 .
-├── graph.py                  # Defines the `Graph` interface and `Edge` class
-├── dijkstra.py               # Implements Dijkstra’s algorithm and the graph reduction for seam finding.
-├── dynamic_programming.py    # Implements the dynamic programming seam finder.
-├── utilities.py              # Includes the energy function, seam removal utilities, and image manipulation functions.
-├── visualization.py          # Provides utilities to visualize seams and create animated GIFs.
-├── cli.py                    # Command-line interface for running seam carving directly.
-├── main.py                   # Entry point of the project. Runs the CLI and manages input/output.
-├── data/                     # Contains example input images and expected outputs for testing.
+├── graph.py                  # Defines the `Graph` and `Edge` 
+├── dijkstra.py               # Implements Dijkstra's algorithm and the graph reduction for seam finding
+├── dynamic_programming.py    # Implements the dynamic programming seam finder
+├── utilities.py              # Includes the energy function, seam removal/insertion utilities
+├── visualization.py          # Visualize seams and create animated GIFs
+├── cli.py                    # Command-line interface 
+├── main.py                   # main file
+├── data/                     # Contains example input and output
 └── README.md 
 ```
 ---
@@ -58,21 +58,34 @@ python3 main.py data/input2.jpg data/output2.jpg --vertical 50 --horizontal 30 -
 |-----------|-------------|----------|
 | `input` | Input image file | — |
 | `output` | Output image file | — |
-| `--vertical` | Number of vertical seams to remove | `0` |
-| `--horizontal` | Number of horizontal seams to remove | `0` |
+| `--vertical` | Number of vertical seams (negative=shrink, positive=enlarge) | `0` |
+| `--horizontal` | Number of horizontal seams (negative=shrink, positive=enlarge) | `0` |
 | `--method` | Seam finding method (`dp` or `dijkstra`) | `dp` |
-| `--gif` | Generate GIF showing seam removal | `False` |
+| `--gif` | Generate GIF showing seam removal/insertion | `False` |
+
+### Examples
+
+```bash
+# Shrink image by 50 pixels width and 30 pixels height
+python3 main.py input.jpg output.jpg --vertical -50 --horizontal -30
+
+# Enlarge image by 50 pixels width and 30 pixels height
+python3 main.py input.jpg output.jpg --vertical 50 --horizontal 30
+
+# Mix: make wider but shorter
+python3 main.py input.jpg output.jpg --vertical 100 --horizontal -50 --gif
+```
 
 ---
 
 ## How It Works
 
 ### What Is Seam Carving?
-Seam carving is a **content-aware image resizing** algorithm that removes (or inserts) seams — connected paths of least “energy” pixels — from an image.  
+Seam carving is a **content-aware image resizing** algorithm that removes or inserts seams — connected paths of least "energy" pixels — from an image.  
 Instead of cropping edges or uniformly scaling, it preserves the most visually important regions.
 
 ### Energy Function
-The **energy function** estimates the “importance” of each pixel based on local gradients:
+The **energy function** estimates the "importance" of each pixel based on local gradients:
 
 $$
 E(x, y) = \sqrt{(dR_x^2 + dG_x^2 + dB_x^2) + (dR_y^2 + dG_y^2 + dB_y^2)}
@@ -81,15 +94,18 @@ $$
 High energy = significant detail (edges, objects)  
 Low energy = background or uniform areas
 
-
-
-### Finding Seams via Dijkstra’s Algorithm
+### Seam Removal (Shrinking)
 1. Model the image as a **directed acyclic graph (DAG)**:
    - Pixels → vertices  
    - Energy values → edge weights  
    - Adjacent pixels → directed edges
-2. Use **Dijkstra’s algorithm** to find the lowest-energy path (shortest path).
+2. Use **Dijkstra's algorithm** or **Dynamic Programming** to find the lowest-energy path (shortest path).
 3. Remove that path (seam) from the image.
+
+### Seam Insertion (Enlarging)
+1. Find the k lowest-energy seams using the same algorithm.
+2. Duplicate these seams by averaging with neighboring pixels for smooth transitions.
+3. Insert all seams to enlarge the image while preserving content.
 
 ### Dynamic Programming Alternative
 The DP method computes minimum-energy paths more efficiently by reusing results from previous columns/rows, achieving better runtime with less memory overhead.
